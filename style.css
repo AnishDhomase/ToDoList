@@ -135,3 +135,14 @@ ul li span:hover{
     background-color: #edeef069;
     font-size: 14px;
 }
+
+@media screen and (max-width:450px){
+    .App{
+        margin: 50px auto 20px;
+        padding: 30px 10px 60px;
+    }
+    .App .addItem button{
+        width: 70px;
+        height: 100%;
+    }
+}
