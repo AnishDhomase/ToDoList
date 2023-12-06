@@ -27,6 +27,7 @@
     color: #002765;
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
 }
 
@@ -52,6 +53,7 @@
     color: white;
     font-size: 14px;
     font-weight: 500;
+    text-transform: capitalize;
 }
 .App .addItem input::placeholder{
     color: white;
@@ -84,6 +86,7 @@ ul li{
     padding: 12px 8px 12px 50px;
     user-select: none;
     cursor: pointer;
+    text-transform: capitalize;
 }
 
 ul li::before{
@@ -106,4 +109,21 @@ ul li.checked{
 ul li.checked::before{
     background-image: url(checked.png);
 
+}
+
+ul li span{
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
+    color: #555;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+ul li span:hover{
+    background-color: #edeef0;
 }
