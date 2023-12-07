@@ -25,6 +25,14 @@ addBtn.addEventListener("click",function(){
         Span.innerHTML = `<i class="fa-solid fa-x"></i>`;
         listItem.appendChild(Span);
 
+        addBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
+        addBtn.classList.add("bgGreen");
+        setTimeout(function(){
+            addBtn.innerHTML = `Add`;
+            addBtn.classList.remove("bgGreen");
+        }, 700);
+
+
         saveData();
     }
 });
@@ -35,8 +43,12 @@ listContainer.addEventListener("click",function(ev){
         saveData();
     }
     else if(ev.target.tagName === "SPAN"){
-        ev.target.parentElement.remove();
-        saveData();
+        ev.target.parentElement.classList.add("fadeOut");
+        setTimeout(function(){
+            ev.target.parentElement.remove();
+            saveData();
+        }, 290);
+        
     }
 }, false);
 
