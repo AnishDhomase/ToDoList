@@ -22,10 +22,13 @@ showTask();
 
 addBtn.addEventListener("click",function(){
     if( inputBox.value === ""){
-        addBtn.innerHTML = `<i class="fa-solid fa-ban"></i>`;
         inputBox.placeholder = "Write Something First!";
+        addBtn.innerHTML = `<i class="fa-solid fa-ban"></i>`;
+        addBtn.classList.add("bgRed");
         setTimeout(function(){
             addBtn.innerHTML = `Add`;
+            addBtn.classList.remove("bgRed");
+
         }, 1000);
         setTimeout(function(){
             inputBox.placeholder = "Add Your Task";
@@ -49,9 +52,12 @@ addBtn.addEventListener("click",function(){
         listItem.appendChild(Span);
 
         addBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
+        addBtn.classList.add("bgGreen");
         setTimeout(function(){
             addBtn.innerHTML = `Add`;
-        }, 700);
+            addBtn.classList.remove("bgGreen");
+
+        }, 1500);
 
 
         saveData();
@@ -76,22 +82,33 @@ listContainer.addEventListener("click",function(ev){
 
         ev.target.classList.remove("fa-pen-to-square");
         ev.target.classList.add("fa-download");
+        ev.target.classList.add("clrGreen");
 
         const parent =  ev.target.parentElement.parentElement;
         const inp = parent.querySelector("input");
+        inp.style.cursor = "text";
         inp.readOnly = false;
-        inp.focus();;  
+        inp.classList.add("bg-differ");
+        inp.focus();
     }
     else if(ev.target.classList.contains("fa-download")){
-
         const parent =  ev.target.parentElement.parentElement;
         const inp = parent.querySelector("input");
+        if(inp.value==""){
+            alert(`You are adding "Empty Task"`);
+            inp.focus();
+            return;
+        }
+        inp.style.cursor = "pointer";
         inp.readOnly = true;
+        inp.classList.remove("bg-differ");
         
         inp.setAttribute("data-in",String(inp.value));
 
         ev.target.classList.remove("fa-download");
+        ev.target.classList.remove("clrGreen");
         ev.target.classList.add("fa-pen-to-square");
+
         saveData();
     }
 }, false);
