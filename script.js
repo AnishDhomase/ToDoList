@@ -75,7 +75,7 @@ listContainer.addEventListener("click",function(ev){
         setTimeout(function(){
             ev.target.parentElement.parentElement.remove();
             saveData();
-        }, 290);
+        }, 1000);
         
     }
     else if(ev.target.classList.contains("fa-pen-to-square")){

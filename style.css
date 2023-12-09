@@ -13,6 +13,7 @@
 }
 body{
     user-select: none;
+    overflow: hidden;
 }
 
 .container{
@@ -29,14 +30,14 @@ body{
 .App{
     width: 100%;
     max-width: 540px;
-    min-height: 340px;
-    height: auto;
+    /* min-height: 340px; */
     background-color: rgba(224, 215, 215, 0.175);
     backdrop-filter: blur(0px);
     margin: 100px auto 20px;
     padding: 40px 30px 70px;
     border: 2px solid rgba(238, 229, 229, 0.159);
     border-radius: 10px;
+    transition: height 2s ease !important;
 }
 
 .App h2{
@@ -116,6 +117,7 @@ ul li{
     border-radius: 25px;
     animation: bornDown 1s ease;
     overflow-x: hidden;
+    transition: all 2s ease !important;
 }
 
 ul li input{
@@ -191,7 +193,8 @@ ul li span i:hover{
 
 .fadeOut{
     transition: all 2s ease;
-    animation: fadeout 0.3s ease;
+    /* animation: fadeout 0.3s ease; */
+    animation: skipOut 2s ease;
 }
 .bgGreen{
     border: 1px solid rgb(116, 223, 91) !important;
@@ -235,6 +238,19 @@ ul li span i:hover{
         opacity: 0;
     }
 }
+@keyframes skipOut{
+    0%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(1000px);
+    }
+}
+
 @keyframes blink{
     0%{
         color: rgb(164, 154, 154);
