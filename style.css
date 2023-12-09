@@ -117,7 +117,11 @@ ul li{
     border-radius: 25px;
     animation: bornDown 1s ease;
     overflow-x: hidden;
-    transition: all 2s ease !important;
+    /* transition: all 2s ease !important; */
+}
+
+ul li.dragging{
+    opacity: 0;
 }
 
 ul li input{
@@ -211,6 +215,9 @@ ul li span i:hover{
     color: var(--white);
     animation: blink 0.5s alternate-reverse infinite;
 
+}
+.textCapitalize{
+    text-transform: capitalize;
 }
 
 

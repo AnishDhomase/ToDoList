@@ -37,7 +37,19 @@ addBtn.addEventListener("click",function(){
     }
     else{
         const listItem = document.createElement("li");
+        listItem.setAttribute('draggable',true);
+
+        listItem.addEventListener("dragstart",()=>{
+            setTimeout( ()=>{
+                listItem.classList.add("dragging");
+            }, 0);
+        })
+        listItem.addEventListener("dragend",()=>{
+            listItem.classList.remove("dragging");
+        })
+
         const inputt = document.createElement("input");
+        inputt.classList.add("textCapitalize");
         inputt.value = inputBox.value;
         inputt.setAttribute("data-in", String(inputt.value));
         inputt.readOnly = true;
@@ -59,37 +71,44 @@ addBtn.addEventListener("click",function(){
 
         }, 1500);
 
-
+        listContainerLiArray = document.querySelectorAll("#list-container li");
         saveData();
     }
 });
+
 
 listContainer.addEventListener("click",function(ev){
     if(ev.target.tagName === "LI"){
         ev.target.classList.toggle("checked");
         ev.target.querySelector("input").classList.toggle("lineThrough");
+
+        listContainerLiArray = document.querySelectorAll("#list-container li");
         saveData();
     }
     else if(ev.target.classList.contains("fa-x")){
         ev.target.parentElement.parentElement.classList.add("fadeOut");
         setTimeout(function(){
             ev.target.parentElement.parentElement.remove();
+            listContainerLiArray = document.querySelectorAll("#list-container li");
             saveData();
         }, 1000);
         
     }
     else if(ev.target.classList.contains("fa-pen-to-square")){
-
+        
         ev.target.classList.remove("fa-pen-to-square");
         ev.target.classList.add("fa-download");
         ev.target.classList.add("clrGreen");
-
+        
         const parent =  ev.target.parentElement.parentElement;
         const inp = parent.querySelector("input");
         inp.style.cursor = "text";
         inp.readOnly = false;
         inp.classList.add("bg-differ");
         inp.focus();
+
+        listContainerLiArray = document.querySelectorAll("#list-container li");
+
     }
     else if(ev.target.classList.contains("fa-download")){
         const parent =  ev.target.parentElement.parentElement;
@@ -104,12 +123,29 @@ listContainer.addEventListener("click",function(ev){
         inp.classList.remove("bg-differ");
         
         inp.setAttribute("data-in",String(inp.value));
-
+        
         ev.target.classList.remove("fa-download");
         ev.target.classList.remove("clrGreen");
         ev.target.classList.add("fa-pen-to-square");
-
+        listContainerLiArray = document.querySelectorAll("#list-container li");
         saveData();
     }
 }, false);
+
+let listContainerLiArray = document.querySelectorAll("#list-container li");
+
+const initList = (ev) => {
+
+    const draggingItem = listContainer.querySelector(".dragging");
+
+    const siblings = [...listContainer.querySelectorAll("li:not(.dragging)")];
+
+    let nextSibling = siblings.find(sib => {
+        return ev.clientY <= sib.offsetTop + sib.offsetHeight*2.5;
+    })
+    // if(nextSibling && draggingItem)
+        listContainer.insertBefore(draggingItem, nextSibling);
+}
+listContainer.addEventListener("dragover",initList);
+
 
