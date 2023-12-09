@@ -91,7 +91,7 @@ listContainer.addEventListener("click",function(ev){
             ev.target.parentElement.parentElement.remove();
             listContainerLiArray = document.querySelectorAll("#list-container li");
             saveData();
-        }, 1000);
+        }, 900);
         
     }
     else if(ev.target.classList.contains("fa-pen-to-square")){

@@ -13,7 +13,7 @@
 }
 body{
     user-select: none;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .container{
